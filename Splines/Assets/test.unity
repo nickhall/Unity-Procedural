@@ -139,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 285772950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.57354736, y: 0, z: 6.014328}
+  m_LocalPosition: {x: 9.57354736, y: 0, z: 7.13839912}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -464,7 +464,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1887373880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.01905727, y: -3.92528772, z: 170.098099}
+  m_LocalPosition: {x: 2.01905727, y: -3.92528772, z: 105.078995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -491,15 +491,15 @@ LineRenderer:
   m_SortingLayerID: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 1.92335904, y: 0, z: 1.08257914}
-  - {x: 3.86401677, y: 0, z: 1.92458487}
-  - {x: 5.82197428, y: 0, z: 2.5260179}
-  - {x: 7.79722977, y: 0, z: 2.8868773}
-  - {x: 9.78978443, y: 0, z: 3.007164}
-  - {x: 11.7996387, y: 0, z: 2.8868773}
-  - {x: 13.8267908, y: 0, z: 2.5260179}
-  - {x: 15.8712435, y: 0, z: 1.92458487}
-  - {x: 17.932991, y: 0, z: 1.08257926}
+  - {x: 1.92335904, y: 0, z: 1.28491187}
+  - {x: 3.86401677, y: 0, z: 2.28428769}
+  - {x: 5.82197428, y: 0, z: 2.9981277}
+  - {x: 7.79722977, y: 0, z: 3.42643142}
+  - {x: 9.78978443, y: 0, z: 3.56919956}
+  - {x: 11.7996387, y: 0, z: 3.42643142}
+  - {x: 13.8267908, y: 0, z: 2.9981277}
+  - {x: 15.8712435, y: 0, z: 2.28428769}
+  - {x: 17.932991, y: 0, z: 1.28491211}
   - {x: 20.012043, y: 0, z: 0}
   m_Parameters:
     startWidth: .5
@@ -544,6 +544,9 @@ MonoBehaviour:
   Width: 2
   Height: 2
   SegmentCount: 10
+  TilingX: 5
+  TilingY: 2
+  MeshMaterial: {fileID: 2100000, guid: 896b6ff456a005842967631631a8ea42, type: 2}
 --- !u!4 &2136847472
 Transform:
   m_ObjectHideFlags: 0

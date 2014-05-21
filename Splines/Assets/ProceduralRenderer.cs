@@ -8,6 +8,10 @@ public class ProceduralRenderer : MonoBehaviour
     public float Width = 2f;
     public float Height = 2f;
     public int SegmentCount = 10;
+    public float TilingX = 1f;
+    public float TilingY = 1f;
+
+    public Material MeshMaterial;
 
 	// Use this for initialization
 	void Start()
@@ -42,12 +46,12 @@ public class ProceduralRenderer : MonoBehaviour
         for (int i = 0; i <= SegmentCount; i++)
         {
             float z = Length * i;
-            float v = (1.0f / SegmentCount) * i;
+            float v = (1.0f / SegmentCount * TilingY) * i;
 
             for (int j = 0; j <= SegmentCount; j++)
             {
                 float x = Width * j;
-                float u = (1.0f / SegmentCount) * j;
+                float u = (1.0f / SegmentCount * TilingX) * j;
 
                 Vector3 offset = new Vector3(x, Random.Range(0f, Height), z);
 
@@ -63,6 +67,7 @@ public class ProceduralRenderer : MonoBehaviour
 
         MeshFilter filter = GetComponent<MeshFilter>();
         filter.sharedMesh = mesh;
+        renderer.material = MeshMaterial;
     }
 
     void BuildQuad(Vector3 offset)
