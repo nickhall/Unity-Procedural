@@ -4,10 +4,6 @@ using System.Collections.Generic;
 
 public class ProceduralMesh
 {
-    // New
-    public float Width = 2f;
-    public float Length = 2f;
-
     public List<Vector3> Vertices { get { return vertices; } }
     public List<Vector3> Normals { get { return normals; } }
     public List<Vector2> UV { get { return uv; } }

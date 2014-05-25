@@ -70,6 +70,11 @@ public class ProceduralRenderer : MonoBehaviour
         renderer.material = MeshMaterial;
     }
 
+    void GenerateBoxMesh()
+    {
+
+    }
+
     void BuildQuad(Vector3 offset)
     {
         meshBuilder.Vertices.Add(new Vector3(0.0f, 0.0f, 0.0f) + offset);
