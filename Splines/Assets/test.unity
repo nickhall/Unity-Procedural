@@ -546,7 +546,7 @@ MonoBehaviour:
   SegmentCount: 10
   TilingX: 5
   TilingY: 2
-  MeshMaterial: {fileID: 2100000, guid: 896b6ff456a005842967631631a8ea42, type: 2}
+  MeshMaterial: {fileID: 2100000, guid: baf36fbd26cb8f9488c39d1ffe060e38, type: 2}
 --- !u!4 &2136847472
 Transform:
   m_ObjectHideFlags: 0
