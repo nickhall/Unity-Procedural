@@ -37,12 +37,12 @@ public class Line : MonoBehaviour
             tangents[i] = 2 * (1 - t) * (InputNodes[1].position - InputNodes[0].position) + 2 * t * (InputNodes[2].position - InputNodes[1].position);
         }
 
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.SetVertexCount(curveNodes.Length);
-        for (int i = 0; i < curveNodes.Length; i++)
-        {
-            lineRenderer.SetPosition(i, curveNodes[i]);
-        }
+        //LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer.SetVertexCount(curveNodes.Length);
+        //for (int i = 0; i < curveNodes.Length; i++)
+        //{
+        //    lineRenderer.SetPosition(i, curveNodes[i]);
+        //}
 
         for (int i = 0; i < curveNodes.Length - 1; ++i)
         {
