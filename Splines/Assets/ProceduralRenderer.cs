@@ -16,7 +16,8 @@ public class ProceduralRenderer : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
-        GenerateGridMesh();
+        //GenerateGridMesh();
+        //GenerateBoxMesh();
 	}
 	
 	// Update is called once per frame
@@ -72,25 +73,69 @@ public class ProceduralRenderer : MonoBehaviour
 
     void GenerateBoxMesh()
     {
+        Vector3 upDir = Vector3.up * Height;
+        Vector3 rightDir = Vector3.right * Width;
+        Vector3 forwardDir = Vector3.forward * Length;
 
+        Vector3 nearCorner = Vector3.zero;
+        Vector3 farCorner = upDir + rightDir + forwardDir;
+
+        BuildQuad(nearCorner, forwardDir, rightDir);
+        BuildQuad(nearCorner, rightDir, upDir);
+        BuildQuad(nearCorner, upDir, forwardDir);
+
+        BuildQuad(farCorner, -rightDir, -forwardDir);
+        BuildQuad(farCorner, -upDir, -rightDir);
+        BuildQuad(farCorner, -forwardDir, -upDir);
+
+        Mesh mesh = meshBuilder.CreateMesh();
+
+        MeshFilter filter = GetComponent<MeshFilter>();
+        filter.sharedMesh = mesh;
+        renderer.material = MeshMaterial;
+    }
+
+    void BuildQuad(Vector3 offset, Vector3 widthDir, Vector3 lengthDir)
+    {
+        Vector3 normal = Vector3.Cross(lengthDir, widthDir).normalized;
+        meshBuilder.Vertices.Add(offset);
+        meshBuilder.UVs.Add(new Vector2(0.0f, 0.0f));
+        meshBuilder.Normals.Add(normal);
+
+        meshBuilder.Vertices.Add(offset + lengthDir);
+        meshBuilder.UVs.Add(new Vector2(0.0f, 1.0f));
+        meshBuilder.Normals.Add(normal);
+
+        meshBuilder.Vertices.Add(offset + lengthDir + widthDir);
+        meshBuilder.UVs.Add(new Vector2(1.0f, 1.0f));
+        meshBuilder.Normals.Add(normal);
+
+        meshBuilder.Vertices.Add(offset + widthDir);
+        meshBuilder.UVs.Add(new Vector2(1.0f, 0.0f));
+        meshBuilder.Normals.Add(normal);
+
+        int baseIndex = meshBuilder.Vertices.Count - 4;
+
+        meshBuilder.AddTriangle(baseIndex, baseIndex + 1, baseIndex + 2);
+        meshBuilder.AddTriangle(baseIndex, baseIndex + 2, baseIndex + 3);
     }
 
     void BuildQuad(Vector3 offset)
     {
         meshBuilder.Vertices.Add(new Vector3(0.0f, 0.0f, 0.0f) + offset);
-        meshBuilder.UV.Add(new Vector2(0.0f, 0.0f));
+        meshBuilder.UVs.Add(new Vector2(0.0f, 0.0f));
         meshBuilder.Normals.Add(Vector3.up);
 
         meshBuilder.Vertices.Add(new Vector3(0.0f, 0.0f, Length) + offset);
-        meshBuilder.UV.Add(new Vector2(0.0f, 1.0f));
+        meshBuilder.UVs.Add(new Vector2(0.0f, 1.0f));
         meshBuilder.Normals.Add(Vector3.up);
 
         meshBuilder.Vertices.Add(new Vector3(Width, 0.0f, Length) + offset);
-        meshBuilder.UV.Add(new Vector2(1.0f, 1.0f));
+        meshBuilder.UVs.Add(new Vector2(1.0f, 1.0f));
         meshBuilder.Normals.Add(Vector3.up);
 
         meshBuilder.Vertices.Add(new Vector3(Width, 0.0f, 0.0f) + offset);
-        meshBuilder.UV.Add(new Vector2(1.0f, 0.0f));
+        meshBuilder.UVs.Add(new Vector2(1.0f, 0.0f));
         meshBuilder.Normals.Add(Vector3.up);
 
         int baseIndex = meshBuilder.Vertices.Count - 4;
@@ -110,7 +155,7 @@ public class ProceduralRenderer : MonoBehaviour
     void BuildQuadForGrid(Vector3 position, Vector2 uv, bool buildTriangles, int vertsPerRow)
     {
         meshBuilder.Vertices.Add(position);
-        meshBuilder.UV.Add(uv);
+        meshBuilder.UVs.Add(uv);
 
         if (buildTriangles)
         {

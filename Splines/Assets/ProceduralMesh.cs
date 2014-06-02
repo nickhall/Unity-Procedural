@@ -6,7 +6,7 @@ public class ProceduralMesh
 {
     public List<Vector3> Vertices { get { return vertices; } }
     public List<Vector3> Normals { get { return normals; } }
-    public List<Vector2> UV { get { return uv; } }
+    public List<Vector2> UVs { get { return uv; } }
 
 
     List<Vector3> vertices = new List<Vector3>();
