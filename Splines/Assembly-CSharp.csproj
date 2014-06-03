@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BezierCurve.cs" />
      <Compile Include="Assets\Line.cs" />
      <Compile Include="Assets\ProceduralMesh.cs" />
      <Compile Include="Assets\ProceduralRenderer.cs" />

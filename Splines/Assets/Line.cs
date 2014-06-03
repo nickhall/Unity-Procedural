@@ -72,8 +72,8 @@ public class Line : MonoBehaviour
             vertices[i * 2] = curveNodes[i] + cross;
             vertices[i * 2 + 1] = curveNodes[i] - cross;
 
-            Vector2 uv2 = new Vector2(0, (float)i / (float)LineResolution * 4);
-            Vector2 uv1 = new Vector2(1, (float)i / (float)LineResolution * 4);
+            Vector2 uv2 = new Vector2(0, (float)i / (float)LineResolution * 5);
+            Vector2 uv1 = new Vector2(1, (float)i / (float)LineResolution * 5);
 
             Debug.Log("UV at " + uv1.y.ToString());
             Debug.Log(vertices.Length);
