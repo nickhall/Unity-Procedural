@@ -72,41 +72,31 @@ public class Line : MonoBehaviour
             vertices[i * 2] = curveNodes[i] + cross;
             vertices[i * 2 + 1] = curveNodes[i] - cross;
 
-            //Vector2 uv1;
-            //Vector2 uv2;
-            //if (i != 0)
-            //{
-            //    uv1 = new Vector2(0, (float)(curveNodes.Length) / (float)i);
-            //    uv2 = new Vector2(1, (float)(curveNodes.Length) / (float)i);
-            //}
-            //else
-            //{
-            //    uv1 = new Vector2(0, 0);
-            //    uv2 = new Vector2(1, 0);
-            //}
+            Vector2 uv2 = new Vector2(0, (float)i / (float)LineResolution * 4);
+            Vector2 uv1 = new Vector2(1, (float)i / (float)LineResolution * 4);
 
-            //meshBuilder.UVs.Add(uv1);
-            //meshBuilder.UVs.Add(uv2);
+            Debug.Log("UV at " + uv1.y.ToString());
+            Debug.Log(vertices.Length);
+            meshBuilder.UVs.Add(uv1);
+            meshBuilder.UVs.Add(uv2);
         }
         meshBuilder.Vertices.AddRange(vertices);
 
         // Build triangle list
-        for (int i = 0; i < LineResolution - 1; i++)
+        for (int i = 0; i < LineResolution; i++)
         {
             int baseIndex = i * 2;
             meshBuilder.AddTriangle(baseIndex, baseIndex + 1, baseIndex + 2);
 
             meshBuilder.AddTriangle(baseIndex + 1, baseIndex + 3, baseIndex + 2);
-            Debug.Log("BI: " + baseIndex);
         }
         Mesh mesh = meshBuilder.CreateMesh();
         mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
         mesh.name = "MESH";
         MeshFilter filter = GetComponent<MeshFilter>();
         filter.sharedMesh = mesh;
         renderer.material = RoadMaterial;
-
-        Debug.Log("Built mesh 1");
 
     }
 
