@@ -8,6 +8,7 @@ public class CatmullRom : MonoBehaviour
     public GameObject[] Points = new GameObject[4];
     public int CurveResolution = 20;
     public Vector3[] CurveCoordinates;
+    public bool ClosedLoop = false;
 
 	void Start()
     {
@@ -20,8 +21,18 @@ public class CatmullRom : MonoBehaviour
         Vector3 p1;
         Vector3 m0;
         Vector3 m1;
+        int pointsToMake;
 
-        CurveCoordinates = new Vector3[(CurveResolution) * (Points.Length - 1)];
+        if (ClosedLoop == true)
+        {
+            pointsToMake = (CurveResolution) * (Points.Length);
+        }
+        else
+        {
+            pointsToMake = (CurveResolution) * (Points.Length - 1);
+        }
+
+        CurveCoordinates = new Vector3[pointsToMake];
 
         for (int i = 0; i < Points.Length - 1; i++)
         {
@@ -38,7 +49,8 @@ public class CatmullRom : MonoBehaviour
             }
             else
             {
-                m0 = p1 - p0;
+                //m0 = p1 - p0;
+                m0 = 0.5f * (p1 - Points[Points.Length - 1].transform.position);
             }
             if (i < Points.Length - 2)
             {
