@@ -8,6 +8,7 @@ public class CatmullRom : MonoBehaviour
     public GameObject[] Points = new GameObject[4];
     public int CurveResolution = 20;
     public Vector3[] CurveCoordinates;
+    public Vector3[] Tangents;
     public bool ClosedLoop = false;
 
 	void Start()
@@ -33,6 +34,7 @@ public class CatmullRom : MonoBehaviour
         }
 
         CurveCoordinates = new Vector3[pointsToMake];
+        Tangents = new Vector3[pointsToMake];
 
         for (int i = 0; i < Points.Length - 1; i++)
         {
@@ -49,8 +51,8 @@ public class CatmullRom : MonoBehaviour
             }
             else
             {
-                //m0 = p1 - p0;
-                m0 = 0.5f * (p1 - Points[Points.Length - 1].transform.position);
+                m0 = p1 - p0;
+                //m0 = 0.5f * (p1 - Points[Points.Length - 1].transform.position);
             }
             if (i < Points.Length - 2)
             {
@@ -85,6 +87,16 @@ public class CatmullRom : MonoBehaviour
                     + (-2.0f * t * t * t + 3.0f * t * t) * p1
                     + (t * t * t - t * t) * m1;
                 CurveCoordinates[i * CurveResolution + j] = position;
+
+                // Calculate tangents
+                // p'(t) = (6t² - 6t)p0 + (3t² - 4t + 1)m0 + (-6t² + 6t)p1 + (3t² - 2t)m1
+                Vector3 tangent = (6 * t * t - 6 * t) * p0
+                    + (3 * t * t - 4 * t + 1) * m0
+                    + (-6 * t * t + 6 * t) * p1
+                    + (3 * t * t - 2 * t) * m1;
+                Tangents[i * CurveResolution + j] = tangent;
+                //Debug.DrawRay(position, tangent.normalized * 2, Color.red);
+                Debug.DrawLine(position + Vector3.Cross(tangent, Vector3.up).normalized, position - Vector3.Cross(tangent, Vector3.up).normalized, Color.red);
             }
         }
 
