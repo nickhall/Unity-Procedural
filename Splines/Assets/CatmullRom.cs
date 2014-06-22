@@ -15,6 +15,13 @@ public class CatmullRom : MonoBehaviour
         //
     }
 
+    public enum Uniformity
+    {
+        Uniform,
+        Centripetal,
+        Chordal
+    }
+
 	void Start()
     {
 	
@@ -45,6 +52,30 @@ public class CatmullRom : MonoBehaviour
             + (-6 * t * t + 6 * t) * end
             + (3 * t * t - 2 * t) * tanPoint2;
         return Interpolate(start, end, tanPoint1, tanPoint2, t);
+    }
+
+    public static Vector3 Interpolate(Vector3 start, Vector3 end, Vector3 tanPoint1, Vector3 tanPoint2, float t, out Vector3 tangent, out Vector3 curvature)
+    {
+        // Calculate second derivative (curvature)
+        // p''(t) = (12t - 6)p0 + (6t - 4)m0 + (-12t + 6)p1 + (6t - 2)m1
+        curvature = (12 * t - 6) * start
+            + (6 * t - 4) * tanPoint1
+            + (-12 * t + 6) * end
+            + (6 * t - 2) * tanPoint2;
+        return Interpolate(start, end, tanPoint1, tanPoint2, t, out tangent);
+
+    }
+
+    public static float[] GetNonuniformT(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float alpha)
+    {
+        float[] values = new float[4];
+        for (int i = 0; i < 4; i++)
+        {
+            //values[i] = Mathf.Pow(Vector3.SqrMagnitude())
+            break;
+        }
+
+        return values;
     }
 	
 	void Update()
@@ -121,15 +152,6 @@ public class CatmullRom : MonoBehaviour
                     m1 = p1 - p0;
                 }
             }
-
-            //if (i >= Points.Length - 2)
-            //{
-            //    m1 = ClosedLoop ? 0.5f * (p1 - Points[Points.Length - 1].transform.position) : p1 - p0;
-            //}
-            //else
-            //{
-            //    m1 = 0.5f * (Points[(i + 2) % Points.Length].transform.position - p0);
-            //}
 
             Vector3 position;
             float t;
