@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\BezierCurve.cs" />
      <Compile Include="Assets\CatmullRom.cs" />
+     <Compile Include="Assets\FreeCamera.cs" />
+     <Compile Include="Assets\ItemPlacer.cs" />
      <Compile Include="Assets\Line.cs" />
      <Compile Include="Assets\ProceduralMesh.cs" />
      <Compile Include="Assets\ProceduralRenderer.cs" />

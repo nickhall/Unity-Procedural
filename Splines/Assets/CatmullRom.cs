@@ -68,6 +68,9 @@ public class CatmullRom : MonoBehaviour
 
     public static float[] GetNonuniformT(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float alpha)
     {
+        // See here: http://stackoverflow.com/a/23980479/837825
+        // C'(t1) = (P1 - P0) / (t1 - t0) - (P2 - P0) / (t2 - t0) + (P2 - P1) / (t2 - t1)
+        // C'(t2) = (P2 - P1) / (t2 - t1) - (P3 - P1) / (t3 - t1) + (P3 - P2) / (t3 - t2)
         float[] values = new float[4];
         for (int i = 0; i < 4; i++)
         {
