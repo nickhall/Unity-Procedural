@@ -34,7 +34,6 @@ public class ItemPlacer : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && hitSuccess)
         {
-            Debug.Log("Click: " + ray);
             ClickPoints.Add(worldHit.point);
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.transform.position = worldHit.point;
