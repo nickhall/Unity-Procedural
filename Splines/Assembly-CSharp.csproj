@@ -48,11 +48,15 @@
   <ItemGroup>
      <Compile Include="Assets\BezierCurve.cs" />
      <Compile Include="Assets\CatmullRom.cs" />
+     <Compile Include="Assets\CurveImplementation.cs" />
      <Compile Include="Assets\FreeCamera.cs" />
      <Compile Include="Assets\ItemPlacer.cs" />
      <Compile Include="Assets\Line.cs" />
      <Compile Include="Assets\ProceduralMesh.cs" />
      <Compile Include="Assets\ProceduralRenderer.cs" />
+     <Compile Include="Assets\RoadNetwork.cs" />
+     <Compile Include="Assets\RoadNode.cs" />
+     <Compile Include="Assets\RoadSegment.cs" />
      <Compile Include="Assets\Sample Assets\Cameras\Scripts\AbstractTargetFollower.cs" />
      <Compile Include="Assets\Sample Assets\Cameras\Scripts\AutoCam.cs" />
      <Compile Include="Assets\Sample Assets\Cameras\Scripts\FreeLookCam.cs" />

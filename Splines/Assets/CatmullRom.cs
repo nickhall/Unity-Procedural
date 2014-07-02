@@ -3,17 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 [ExecuteInEditMode()]
-public class CatmullRom : MonoBehaviour
+public class CatmullRom
 {
     public GameObject[] Points = new GameObject[4];
     public int CurveResolution = 20;
     public Vector3[] CurveCoordinates;
     public Vector3[] Tangents;
     public bool ClosedLoop = false;
-    public struct CatmullRomSpline
-    {
-        //
-    }
 
     public enum Uniformity
     {
@@ -21,11 +17,6 @@ public class CatmullRom : MonoBehaviour
         Centripetal,
         Chordal
     }
-
-	void Start()
-    {
-	
-	}
 
     public static Vector3 Interpolate(Vector3 start, Vector3 end, Vector3 tanPoint1, Vector3 tanPoint2, float t)
     {
