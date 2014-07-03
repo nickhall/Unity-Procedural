@@ -17,6 +17,13 @@ public class RoadNetwork : MonoBehaviour
 	void Start()
     {
         nodes = new List<RoadNode>();
+
+        // Remove this later
+        RoadNode firstNode = CreateNode(new Vector3(5f, 0, 5f));
+        RoadNode secondNode = CreateNode(new Vector3(10f, 0, 10f), firstNode);
+        RoadNode thirdNode = CreateNode(new Vector3(10f, 0, -3f));
+        thirdNode.AddConnection(firstNode);
+        thirdNode.AddConnection(secondNode);
 	}
 	
 	void Update()
@@ -24,30 +31,36 @@ public class RoadNetwork : MonoBehaviour
 	
 	}
 
-    public void CreateNode(Vector3 position)
-    {
-        //
-    }
-
-    public void CreateNode(Vector3 position, RoadNode connection)
+    public RoadNode CreateNode(Vector3 position)
     {
         RoadNode newNode = new RoadNode(position);
-        newNode.AddConnection(connection);
         nodes.Add(newNode);
+        return newNode;
+    }
+
+    public RoadNode CreateNode(Vector3 position, RoadNode connection)
+    {
+        RoadNode newNode = CreateNode(position);
+        newNode.AddConnection(connection);
+
+        return newNode;
     }
 
     // Currently draws a line for every connection.
     // TODO: Change this so that it doesn't draw lines over the same connection twice
     void OnDrawGizmos()
     {
-        foreach (RoadNode node in nodes)
+        if (nodes.Count != 0)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawCube(node.Position, Vector3.one * 0.5f);
-            foreach (RoadNode connection in node.Connections)
+            foreach (RoadNode node in nodes)
             {
-                Gizmos.color = Color.gray;
-                Gizmos.DrawLine(node.Position, connection.Position);
+                Gizmos.color = Color.green;
+                Gizmos.DrawCube(node.Position, Vector3.one * 0.5f);
+                foreach (RoadNode connection in node.Connections)
+                {
+                    Gizmos.color = Color.gray;
+                    Gizmos.DrawLine(node.Position, connection.Position);
+                }
             }
         }
     }

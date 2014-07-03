@@ -27,7 +27,7 @@ public class RoadNode
         this.position = position;
 	}
 
-    public void AddConnection(RoadNode node)
+    public void AddConnection(RoadNode node, bool oneWay = false)
     {
         if (connections.Contains(node))
         {
@@ -35,5 +35,9 @@ public class RoadNode
         }
 
         connections.Add(node);
+        if (!oneWay)
+        {
+            node.Connections.Add(this);
+        }
     }
 }
