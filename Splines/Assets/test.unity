@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClickPoints: []
+  SphereCastRadius: 1
 --- !u!23 &351734402
 Renderer:
   m_ObjectHideFlags: 0
@@ -844,7 +845,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
---- !u!43 &930816266
+--- !u!43 &880555421
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1394,7 +1395,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1887373880}
-  m_Mesh: {fileID: 930816266}
+  m_Mesh: {fileID: 880555421}
 --- !u!23 &1887373885
 Renderer:
   m_ObjectHideFlags: 0
@@ -1444,6 +1445,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayWireframe: 1
+  RoadNodeType: {fileID: 100000, guid: 0e96adb4e0840a441b73882ac8fca50d, type: 2}
+  nodes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!33 &2026121198
 MeshFilter:
   m_ObjectHideFlags: 0

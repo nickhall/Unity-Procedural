@@ -27,7 +27,7 @@ public class CurveImplementation : MonoBehaviour
         Vector3 m0;
         Vector3 m1;
         int pointsToMake;
-        Debug.Log("This is a test " + Points[0]);
+        //Debug.Log("This is a test " + Points[0]);
 
         if (ClosedLoop == true)
         {

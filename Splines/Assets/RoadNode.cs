@@ -3,41 +3,35 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-
-public class RoadNode
+[RequireComponent(typeof(BoxCollider))]
+public class RoadNode : MonoBehaviour
 {
-    Vector3 position;
-
     public Vector3 Position
     {
-        get { return position; }
-        set { position = value; }
+        get
+        {
+            return transform.position;
+        }
     }
-    List<RoadNode> connections;
+    public List<GameObject> Connections;
 
-    public List<RoadNode> Connections
+    //public RoadNode(Vector3 position)
+    //{
+    //    connections = new List<RoadNode>();
+    //    this.position = position;
+    //}
+
+    public void AddConnection(GameObject node, bool oneWay = false)
     {
-        get { return connections; }
-        set { connections = value; }
-    }
-
-	public RoadNode(Vector3 position)
-	{
-        connections = new List<RoadNode>();
-        this.position = position;
-	}
-
-    public void AddConnection(RoadNode node, bool oneWay = false)
-    {
-        if (connections.Contains(node))
+        if (Connections.Contains(node))
         {
             throw new ArgumentException("Duplicate node connection added");
         }
 
-        connections.Add(node);
+        Connections.Add(node);
         if (!oneWay)
         {
-            node.Connections.Add(this);
+            node.GetComponent<RoadNode>().Connections.Add(gameObject);
         }
     }
 }

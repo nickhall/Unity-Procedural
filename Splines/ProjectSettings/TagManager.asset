@@ -8,6 +8,8 @@ TagManager:
   - Smelly
   - Fire
   - GameWorld
+  - RoadNetwork
+  - RoadNode
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

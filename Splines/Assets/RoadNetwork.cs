@@ -5,43 +5,48 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshFilter))]
-[ExecuteInEditMode()]
+//[ExecuteInEditMode()]
 public class RoadNetwork : MonoBehaviour
 {
     public bool DisplayWireframe = true;
+    public GameObject RoadNodeType;
 
-    List<RoadNode> nodes;
+    public List<GameObject> nodes;
     public delegate void RoadModificationHandler(object sender, EventArgs e);
     public event RoadModificationHandler OnRoadModification;
 
 	void Start()
     {
-        nodes = new List<RoadNode>();
+        nodes = new List<GameObject>();
 
         // Remove this later
-        RoadNode firstNode = CreateNode(new Vector3(5f, 0, 5f));
-        RoadNode secondNode = CreateNode(new Vector3(10f, 0, 10f), firstNode);
-        RoadNode thirdNode = CreateNode(new Vector3(10f, 0, -3f));
-        thirdNode.AddConnection(firstNode);
-        thirdNode.AddConnection(secondNode);
+        GameObject firstNode = CreateNode(new Vector3(5f, 0, 5f));
+        GameObject secondNode = CreateNode(new Vector3(10f, 0, 10f), firstNode);
+        GameObject thirdNode = CreateNode(new Vector3(10f, 0, -3f));
+        thirdNode.GetComponent<RoadNode>().AddConnection(firstNode);
+        thirdNode.GetComponent<RoadNode>().AddConnection(secondNode);
 	}
 	
 	void Update()
     {
-	
+
 	}
 
-    public RoadNode CreateNode(Vector3 position)
+    public GameObject CreateNode(Vector3 position)
     {
-        RoadNode newNode = new RoadNode(position);
+        //RoadNode newNode = new RoadNode(position);
+        GameObject newNode = Instantiate(RoadNodeType) as GameObject;
+        Debug.Log("Created new node: " + newNode);
+        newNode.transform.position = position;
         nodes.Add(newNode);
+        Debug.Log("Created point!");
         return newNode;
     }
 
-    public RoadNode CreateNode(Vector3 position, RoadNode connection)
+    public GameObject CreateNode(Vector3 position, GameObject connection)
     {
-        RoadNode newNode = CreateNode(position);
-        newNode.AddConnection(connection);
+        GameObject newNode = CreateNode(position);
+        newNode.GetComponent<RoadNode>().AddConnection(connection);
 
         return newNode;
     }
@@ -52,14 +57,14 @@ public class RoadNetwork : MonoBehaviour
     {
         if (nodes.Count != 0)
         {
-            foreach (RoadNode node in nodes)
+            foreach (GameObject node in nodes)
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawCube(node.Position, Vector3.one * 0.5f);
-                foreach (RoadNode connection in node.Connections)
+                Gizmos.DrawCube(node.transform.position, Vector3.one * 0.5f);
+                foreach (GameObject connection in node.GetComponent<RoadNode>().Connections)
                 {
                     Gizmos.color = Color.gray;
-                    Gizmos.DrawLine(node.Position, connection.Position);
+                    Gizmos.DrawLine(node.transform.position, connection.transform.position);
                 }
             }
         }
