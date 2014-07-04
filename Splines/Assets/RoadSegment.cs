@@ -4,17 +4,20 @@ using System.Collections.Generic;
 
 public class RoadSegment
 {
-    Vector3 start;
-    Vector3 end;
-    List<Vector3> controlPoints = new List<Vector3>();
+    public Vector3 StartPoint;
+    public Vector3 EndPoint;
+    public int RoadType = 0;
+    public enum Direction
+    {
+        TwoWay,
+        StartToEnd,
+        EndToStart
+    }
+    //public Direction Direction;
 
-	void Start()
+    public RoadSegment(Vector3 start, Vector3 end)
     {
-	
-	}
-	
-	void Update()
-    {
-	
-	}
+        this.StartPoint = start;
+        this.EndPoint = end;
+    }
 }

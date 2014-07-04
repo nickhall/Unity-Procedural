@@ -14,12 +14,13 @@ public class RoadNode : MonoBehaviour
         }
     }
     public List<GameObject> Connections;
+    public List<int> RoadType;
+    public Vector3 Direction;
 
-    //public RoadNode(Vector3 position)
-    //{
-    //    connections = new List<RoadNode>();
-    //    this.position = position;
-    //}
+    void Update()
+    {
+
+    }
 
     public void AddConnection(GameObject node, bool oneWay = false)
     {

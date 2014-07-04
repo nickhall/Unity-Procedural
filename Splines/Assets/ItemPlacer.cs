@@ -6,6 +6,7 @@ public class ItemPlacer : MonoBehaviour
 {
     public List<Vector3> ClickPoints = new List<Vector3>();
     public float SphereCastRadius = 1.0f;
+    public int PlacementMode = 0;
     GameObject mouseCube;
     RoadNetwork roadNetwork;
     bool start = true;
@@ -26,7 +27,7 @@ public class ItemPlacer : MonoBehaviour
         RaycastHit[] hits = Physics.SphereCastAll(ray, SphereCastRadius);
         Vector3 worldHitPosition = Vector3.zero;
         bool hitSuccess = false;
-        if (hits.Length > 0)
+        if (hits.Length > 0 && GUIUtility.hotControl == 0)
         {
             foreach (RaycastHit hit in hits)
             {
@@ -80,4 +81,10 @@ public class ItemPlacer : MonoBehaviour
             previousPoint = currentPoint;
         }
 	}
+
+    public void SetMode(string mode)
+    {
+        Debug.Log(mode);
+        PlacementMode += 1;
+    }
 }
