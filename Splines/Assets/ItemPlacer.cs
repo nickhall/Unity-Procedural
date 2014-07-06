@@ -39,12 +39,7 @@ public class ItemPlacer : MonoBehaviour
                         Vector3 precisePosition = preciseGroundCollision.point;
                         mouseCube.transform.position = precisePosition;
                         worldHitPosition = precisePosition;
-                        Debug.Log(worldHitPosition);
                         hitSuccess = true;
-                    }
-                    else
-                    {
-                        Debug.Log("wtf");
                     }
                 }
                 else if (hit.collider.gameObject.tag == "RoadNode")
