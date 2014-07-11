@@ -77,13 +77,11 @@ public class FreeCamera : MonoBehaviour
             if (zoom != 0)
             {
                 float angle = Vector3.Angle(Vector3.down, transform.forward);
-                Debug.Log(angle);
                 zoomDirection = transform.forward;
                 if (angle > MaximumZoomAngle)
                 {
                     zoomDirection = Quaternion.AngleAxis(MaximumZoomAngle, -transform.right) * Vector3.down;
                     zoomDirection = zoomDirection.normalized;
-                    Debug.Log(angle + " degrees changed to " + zoomDirection);
                 }
                 zoomOffset = zoomDirection * Mathf.Sign(zoom) * ZoomSpeed;
             }

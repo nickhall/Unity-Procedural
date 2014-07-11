@@ -9,9 +9,20 @@ public class ItemPlacer : MonoBehaviour
     public int PlacementMode = 0;
     GameObject mouseCube;
     RoadNetwork roadNetwork;
-    bool start = true;
+    bool startNewObject = true;
     GameObject currentPoint;
     GameObject previousPoint;
+    GameObject selectedObject;
+    bool hoveringOnObject;
+    bool objectIsSelected;
+    bool validPlacement;
+
+    public enum PlacementMode
+    {
+        RoadStart,
+        RoadEnd,
+        BuildingPlop
+    }
 
     void Start()
     {
@@ -26,7 +37,10 @@ public class ItemPlacer : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.SphereCastAll(ray, SphereCastRadius);
         Vector3 worldHitPosition = Vector3.zero;
+        selectedObject = null;
         bool hitSuccess = false;
+        validPlacement = false;
+
         if (hits.Length > 0 && GUIUtility.hotControl == 0)
         {
             foreach (RaycastHit hit in hits)
@@ -44,33 +58,40 @@ public class ItemPlacer : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.tag == "RoadNode")
                 {
-                    Debug.Log("Hitting road node");
                     Vector3 hitPosition = hit.collider.gameObject.transform.position;
                     mouseCube.transform.position = hitPosition;
                     worldHitPosition = hitPosition;
                     hitSuccess = true;
+                    selectedObject = hit.collider.gameObject;
                     break;
                 }
+            }
+            if (!startNewObject)
+            {
+                Color connectionColor = selectedObject != null && !RoadNetwork.IsValidConnection(previousPoint, selectedObject) ? Color.red : Color.gray;
+                Debug.DrawLine(previousPoint.transform.position, worldHitPosition, connectionColor);
             }
         }
 
         if (Input.GetMouseButtonDown(0) && hitSuccess)
         {
-            //ClickPoints.Add(worldHit.point);
-            //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //cube.transform.position = worldHit.point;
-            //cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            Debug.Log("Creating point...");
-            currentPoint = roadNetwork.CreateNode(worldHitPosition);
-
-            if (!start)
+            if (selectedObject == null)
             {
-                currentPoint.GetComponent<RoadNode>().AddConnection(previousPoint);
-                start = true;
+                currentPoint = roadNetwork.CreateNode(worldHitPosition);
             }
             else
             {
-                start = false;
+                currentPoint = selectedObject;
+            }
+
+            if (!startNewObject)
+            {
+                currentPoint.GetComponent<RoadNode>().AddConnection(previousPoint);
+                startNewObject = true;
+            }
+            else
+            {
+                startNewObject = false;
             }
 
             previousPoint = currentPoint;

@@ -2,15 +2,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
-[ExecuteInEditMode()]
 public class RoadNetwork : MonoBehaviour
 {
     public bool DisplayWireframe = true;
     public GameObject RoadNodeType;
-    public List<RoadSegment> Segments;
+    public List<RoadGraphVertex> Segments;
 
     public List<GameObject> nodes;
     public delegate void RoadModificationHandler(object sender, EventArgs e);
@@ -27,7 +27,7 @@ public class RoadNetwork : MonoBehaviour
         thirdNode.GetComponent<RoadNode>().AddConnection(firstNode);
         thirdNode.GetComponent<RoadNode>().AddConnection(secondNode);
 
-        Segments = new List<RoadSegment>();
+        Segments = new List<RoadGraphVertex>();
 	}
 	
 	void Update()
@@ -38,7 +38,7 @@ public class RoadNetwork : MonoBehaviour
             {
                 foreach (GameObject connection in node.GetComponent<RoadNode>().Connections)
                 {
-                    Debug.DrawLine(node.transform.position, connection.transform.position, Color.green);
+                    //Debug.DrawLine(node.transform.position, connection.transform.position, Color.green);
                 }
             }
         }
@@ -46,12 +46,10 @@ public class RoadNetwork : MonoBehaviour
 
     public GameObject CreateNode(Vector3 position)
     {
-        //RoadNode newNode = new RoadNode(position);
         GameObject newNode = Instantiate(RoadNodeType) as GameObject;
-        Debug.Log("Created new node: " + newNode);
         newNode.transform.position = position;
         nodes.Add(newNode);
-        Debug.Log("Created point!");
+
         return newNode;
     }
 
@@ -65,7 +63,7 @@ public class RoadNetwork : MonoBehaviour
 
     public void RebuildRoadData()
     {
-        Segments = new List<RoadSegment>();
+        Segments = new List<RoadGraphVertex>();
         List<GameObject> completedNodes = new List<GameObject>();
 
         // TODO: Make sure this algorithm isn't terribly slow
@@ -73,11 +71,29 @@ public class RoadNetwork : MonoBehaviour
         {
             foreach (GameObject connection in node.GetComponent<RoadNode>().Connections)
             {
-                RoadSegment segment = new RoadSegment(node.transform.position, connection.transform.position);
-                if (!Segments.Contains(segment)) Segments.Add(segment);
+                RoadGraphVertex segment = new RoadGraphVertex(node, connection);
+                if (!Segments.Contains(segment))
+                {
+                    Segments.Add(segment);
+                    Debug.Log("Segment added");
+                }
             }
         }
 
+    }
+
+    public static bool IsValidConnection(GameObject start, GameObject end)
+    {
+        if (RoadNode.Equals(start, end))
+        {
+            return false;
+        }
+        if (start.GetComponent<RoadNode>().Connections.Contains(end))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     // Currently draws a line for every connection.

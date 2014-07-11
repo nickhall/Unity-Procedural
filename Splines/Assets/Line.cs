@@ -75,8 +75,6 @@ public class Line : MonoBehaviour
             Vector2 uv2 = new Vector2(0, (float)i / (float)LineResolution * 5);
             Vector2 uv1 = new Vector2(1, (float)i / (float)LineResolution * 5);
 
-            Debug.Log("UV at " + uv1.y.ToString());
-            Debug.Log(vertices.Length);
             meshBuilder.UVs.Add(uv1);
             meshBuilder.UVs.Add(uv2);
         }
