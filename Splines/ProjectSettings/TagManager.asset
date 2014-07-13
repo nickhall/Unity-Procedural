@@ -10,6 +10,7 @@ TagManager:
   - GameWorld
   - RoadNetwork
   - RoadNode
+  - Road
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   User Layer 8: Vehicles
   User Layer 9: Characters
   User Layer 10: Floor
-  User Layer 11: 
+  User Layer 11: Road
   User Layer 12: 
   User Layer 13: 
   User Layer 14: 

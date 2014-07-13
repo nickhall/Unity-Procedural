@@ -16,17 +16,12 @@ public class RoadNetwork : MonoBehaviour
     public delegate void RoadModificationHandler(object sender, EventArgs e);
     public event RoadModificationHandler OnRoadModification;
 
+    List<GameObject> nodeBuffer;
+
 	void Start()
     {
         nodes = new List<GameObject>();
-
-        // Remove this later
-        GameObject firstNode = CreateNode(new Vector3(5f, 0, 5f));
-        GameObject secondNode = CreateNode(new Vector3(10f, 0, 10f), firstNode);
-        GameObject thirdNode = CreateNode(new Vector3(10f, 0, -3f));
-        thirdNode.GetComponent<RoadNode>().AddConnection(firstNode);
-        thirdNode.GetComponent<RoadNode>().AddConnection(secondNode);
-
+        nodeBuffer = new List<GameObject>();
         Segments = new List<RoadGraphVertex>();
 	}
 	
@@ -59,6 +54,39 @@ public class RoadNetwork : MonoBehaviour
         newNode.GetComponent<RoadNode>().AddConnection(connection);
 
         return newNode;
+    }
+
+    public GameObject CreateBufferedNode(Vector3 position)
+    {
+        GameObject newNode = Instantiate(RoadNodeType) as GameObject;
+        newNode.transform.position = position;
+        nodeBuffer.Add(newNode);
+
+        return newNode;
+    }
+
+    public void ApplyBuffer()
+    {
+        foreach (GameObject node in nodeBuffer)
+        {
+            nodes.Add(node);
+        }
+
+        ClearBuffer();
+    }
+
+    public void ClearBuffer()
+    {
+        nodeBuffer.Clear();
+    }
+
+    public void DestroyBuffer()
+    {
+        foreach (GameObject node in nodeBuffer)
+        {
+            Destroy(node);
+        }
+        ClearBuffer();
     }
 
     public void RebuildRoadData()

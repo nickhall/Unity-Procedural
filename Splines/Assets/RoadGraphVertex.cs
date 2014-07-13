@@ -6,6 +6,7 @@ public class RoadGraphVertex
 {
     public GameObject StartPoint;
     public GameObject EndPoint;
+    public Vector3[] Waypoints;
     public int RoadType = 0;
     public enum Direction
     {

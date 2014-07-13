@@ -16,18 +16,25 @@ public class ItemPlacer : MonoBehaviour
     bool hoveringOnObject;
     bool objectIsSelected;
     bool validPlacement;
+    bool placementPreview;
 
-    public enum PlacementMode
-    {
-        RoadStart,
-        RoadEnd,
-        BuildingPlop
-    }
+    Vector3 tempStart;
+    Vector3 tempEnd;
+    Vector3 tempStartTangent;
+    Vector3 tempEndTangent;
+
+    //public enum PlacementMode
+    //{
+    //    RoadStart,
+    //    RoadEnd,
+    //    BuildingPlop
+    //}
 
     void Start()
     {
         mouseCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         mouseCube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        placementPreview = false;
 
         roadNetwork = GameObject.Find("RoadNetwork").GetComponent<RoadNetwork>();
     }
@@ -77,7 +84,7 @@ public class ItemPlacer : MonoBehaviour
         {
             if (selectedObject == null)
             {
-                currentPoint = roadNetwork.CreateNode(worldHitPosition);
+                currentPoint = roadNetwork.CreateBufferedNode(worldHitPosition);
             }
             else
             {
@@ -86,6 +93,7 @@ public class ItemPlacer : MonoBehaviour
 
             if (!startNewObject)
             {
+                roadNetwork.ApplyBuffer();
                 currentPoint.GetComponent<RoadNode>().AddConnection(previousPoint);
                 startNewObject = true;
             }
@@ -96,7 +104,25 @@ public class ItemPlacer : MonoBehaviour
 
             previousPoint = currentPoint;
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            cancelInput();
+        }
 	}
+
+    void finalizePlacement()
+    {
+
+    }
+
+    void cancelInput()
+    {
+        roadNetwork.DestroyBuffer();
+        previousPoint = null;
+        currentPoint = null;
+        startNewObject = true;
+        Debug.Log("Input cancelled");
+    }
 
     public void SetMode(string mode)
     {
