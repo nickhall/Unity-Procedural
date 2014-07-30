@@ -46,18 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BezierCurve.cs" />
-     <Compile Include="Assets\CatmullRom.cs" />
-     <Compile Include="Assets\CurveImplementation.cs" />
-     <Compile Include="Assets\FreeCamera.cs" />
-     <Compile Include="Assets\GUITest.cs" />
-     <Compile Include="Assets\ItemPlacer.cs" />
-     <Compile Include="Assets\Line.cs" />
-     <Compile Include="Assets\ProceduralMesh.cs" />
-     <Compile Include="Assets\ProceduralRenderer.cs" />
-     <Compile Include="Assets\RoadGraphVertex.cs" />
-     <Compile Include="Assets\RoadNetwork.cs" />
-     <Compile Include="Assets\RoadNode.cs" />
      <Compile Include="Assets\Sample Assets\Cameras\Scripts\AbstractTargetFollower.cs" />
      <Compile Include="Assets\Sample Assets\Cameras\Scripts\AutoCam.cs" />
      <Compile Include="Assets\Sample Assets\Cameras\Scripts\FreeLookCam.cs" />
@@ -123,6 +111,18 @@
      <Compile Include="Assets\Sample Assets\Utility\TimedObjectActivator.cs" />
      <Compile Include="Assets\Sample Assets\Utility\WaypointCircuit.cs" />
      <Compile Include="Assets\Sample Assets\Utility\WaypointProgressTracker.cs" />
+     <Compile Include="Assets\Scripts\BezierCurve.cs" />
+     <Compile Include="Assets\Scripts\CatmullRom.cs" />
+     <Compile Include="Assets\Scripts\CurveImplementation.cs" />
+     <Compile Include="Assets\Scripts\FreeCamera.cs" />
+     <Compile Include="Assets\Scripts\GUITest.cs" />
+     <Compile Include="Assets\Scripts\ItemPlacer.cs" />
+     <Compile Include="Assets\Scripts\Line.cs" />
+     <Compile Include="Assets\Scripts\ProceduralMesh.cs" />
+     <Compile Include="Assets\Scripts\ProceduralRenderer.cs" />
+     <Compile Include="Assets\Scripts\RoadGraphVertex.cs" />
+     <Compile Include="Assets\Scripts\RoadNetwork.cs" />
+     <Compile Include="Assets\Scripts\RoadNode.cs" />
      <Compile Include="Assets\Sources\LightningBolt.cs" />
      <None Include="Assets\Sample Assets\Effects\Toon Shading\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Sample Assets\Prototyping\Shaders\WorldCoord Diffuse.shader" />
