@@ -93,9 +93,13 @@ public class ItemPlacer : MonoBehaviour
 
             if (!startNewObject)
             {
-                roadNetwork.ApplyBuffer();
-                currentPoint.GetComponent<RoadNode>().AddConnection(previousPoint);
-                startNewObject = true;
+                if (currentPoint != previousPoint)
+                {
+                    roadNetwork.ApplyBuffer();
+                    currentPoint.GetComponent<RoadNode>().AddConnection(previousPoint);
+                    Debug.Log("Duplicate node blocked");
+                    startNewObject = true;
+                }
             }
             else
             {
