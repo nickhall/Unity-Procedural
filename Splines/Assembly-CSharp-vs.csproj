@@ -116,6 +116,7 @@
      <Compile Include="Assets\Scripts\CurveImplementation.cs" />
      <Compile Include="Assets\Scripts\FreeCamera.cs" />
      <Compile Include="Assets\Scripts\GUITest.cs" />
+     <Compile Include="Assets\Scripts\IGraph.cs" />
      <Compile Include="Assets\Scripts\ItemPlacer.cs" />
      <Compile Include="Assets\Scripts\Line.cs" />
      <Compile Include="Assets\Scripts\ProceduralMesh.cs" />
