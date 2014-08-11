@@ -19,7 +19,7 @@ public class Line : MonoBehaviour
     Vector3[] vertices;
     Vector3[] normals;
 
-    ProceduralMesh meshBuilder = new ProceduralMesh();
+    MeshBuilder meshBuilder = new MeshBuilder();
 
     void Awake()
     {

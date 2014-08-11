@@ -121,7 +121,7 @@
      <Compile Include="Assets\Scripts\Line.cs" />
      <Compile Include="Assets\Scripts\ProceduralMesh.cs" />
      <Compile Include="Assets\Scripts\ProceduralRenderer.cs" />
-     <Compile Include="Assets\Scripts\RoadGraphVertex.cs" />
+     <Compile Include="Assets\Scripts\RoadGraphEdge.cs" />
      <Compile Include="Assets\Scripts\RoadNetwork.cs" />
      <Compile Include="Assets\Scripts\RoadNode.cs" />
      <Compile Include="Assets\Sources\LightningBolt.cs" />

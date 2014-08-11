@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ProceduralMesh
+public class MeshBuilder
 {
     public List<Vector3> Vertices { get { return vertices; } }
     public List<Vector3> Normals { get { return normals; } }

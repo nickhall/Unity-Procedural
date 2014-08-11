@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RoadGraphVertex
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshFilter))]
+public class RoadGraphEdge
 {
     public GameObject StartPoint;
     public GameObject EndPoint;
     public Vector3[] Waypoints;
     public int RoadType = 0;
+    public Mesh SegmentMesh;
     public enum Direction
     {
         TwoWay,
@@ -16,13 +19,13 @@ public class RoadGraphVertex
     }
     //public Direction Direction;
 
-    public RoadGraphVertex(GameObject start, GameObject end)
+    public RoadGraphEdge(GameObject start, GameObject end)
     {
         this.StartPoint = start;
         this.EndPoint = end;
     }
 
-    public static bool Equals(RoadGraphVertex point1, RoadGraphVertex point2)
+    public static bool Equals(RoadGraphEdge point1, RoadGraphEdge point2)
     {
         if (point1.StartPoint == point2.StartPoint && point1.EndPoint == point2.EndPoint)
         {
@@ -38,8 +41,8 @@ public class RoadGraphVertex
         }
     }
 
-    public bool Equals(RoadGraphVertex roadSegment)
+    public bool Equals(RoadGraphEdge roadSegment)
     {
-        return RoadGraphVertex.Equals(this, roadSegment);
+        return RoadGraphEdge.Equals(this, roadSegment);
     }
 }

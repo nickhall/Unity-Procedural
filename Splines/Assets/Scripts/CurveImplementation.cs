@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshFilter))]
 [ExecuteInEditMode()]
 public class CurveImplementation : MonoBehaviour
 {

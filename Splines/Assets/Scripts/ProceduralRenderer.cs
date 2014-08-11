@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ProceduralRenderer : MonoBehaviour
 {
-    ProceduralMesh meshBuilder = new ProceduralMesh();
+    MeshBuilder meshBuilder = new MeshBuilder();
     public float Length = 2f;
     public float Width = 2f;
     public float Height = 2f;

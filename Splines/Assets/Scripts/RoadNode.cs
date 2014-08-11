@@ -16,6 +16,11 @@ public class RoadNode : MonoBehaviour
     public List<GameObject> Connections;
     public List<int> RoadType;
     public Vector3 Direction;
+    public Vector3 Normal
+    {
+        get;
+        private set;
+    }
 
     void Update()
     {

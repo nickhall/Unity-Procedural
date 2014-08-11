@@ -10,7 +10,7 @@ public class RoadNetwork : MonoBehaviour
 {
     public bool DisplayWireframe = true;
     public GameObject RoadNodeType;
-    public List<RoadGraphVertex> Segments;
+    public List<RoadGraphEdge> Segments;
 
     public List<GameObject> nodes;
     public delegate void RoadModificationHandler(object sender, EventArgs e);
@@ -22,7 +22,7 @@ public class RoadNetwork : MonoBehaviour
     {
         nodes = new List<GameObject>();
         nodeBuffer = new List<GameObject>();
-        Segments = new List<RoadGraphVertex>();
+        Segments = new List<RoadGraphEdge>();
 	}
 	
 	void Update()
@@ -91,7 +91,7 @@ public class RoadNetwork : MonoBehaviour
 
     public void RebuildRoadData()
     {
-        Segments = new List<RoadGraphVertex>();
+        Segments = new List<RoadGraphEdge>();
         List<GameObject> completedNodes = new List<GameObject>();
 
         // TODO: Make sure this algorithm isn't terribly slow
@@ -99,7 +99,7 @@ public class RoadNetwork : MonoBehaviour
         {
             foreach (GameObject connection in node.GetComponent<RoadNode>().Connections)
             {
-                RoadGraphVertex segment = new RoadGraphVertex(node, connection);
+                RoadGraphEdge segment = new RoadGraphEdge(node, connection);
                 if (!Segments.Contains(segment))
                 {
                     Segments.Add(segment);
