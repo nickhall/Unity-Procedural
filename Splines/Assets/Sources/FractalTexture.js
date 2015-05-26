@@ -19,7 +19,7 @@ private var fractal : FractalNoise;
 function Start ()
 {
 	texture = new Texture2D(width, height, TextureFormat.RGB24, false);
-	renderer.material.mainTexture = texture;
+	GetComponent.<Renderer>().material.mainTexture = texture;
 }
 
 function Update()

@@ -1,14 +1,14 @@
 var mouseOverColor = Color.blue;
 private var originalColor : Color;
 function Start () {
-	originalColor = renderer.sharedMaterial.color;
+	originalColor = GetComponent.<Renderer>().sharedMaterial.color;
 }
 function OnMouseEnter () {
-	renderer.material.color = mouseOverColor;
+	GetComponent.<Renderer>().material.color = mouseOverColor;
 }
 
 function OnMouseExit () {
-	renderer.material.color = originalColor;
+	GetComponent.<Renderer>().material.color = originalColor;
 }
 
 function OnMouseDown () {

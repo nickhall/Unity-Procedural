@@ -94,7 +94,7 @@ public class Line : MonoBehaviour
         mesh.name = "MESH";
         MeshFilter filter = GetComponent<MeshFilter>();
         filter.sharedMesh = mesh;
-        renderer.material = RoadMaterial;
+        GetComponent<Renderer>().material = RoadMaterial;
 
     }
 
