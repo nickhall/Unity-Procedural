@@ -13,11 +13,11 @@ function GenerateHeightmap ()
 {
 	// Create the game object containing the renderer
 	gameObject.AddComponent(MeshFilter);
-	gameObject.AddComponent("MeshRenderer");
+	gameObject.AddComponent.<MeshRenderer>();
 	if (material)
-		renderer.material = material;
+		GetComponent.<Renderer>().material = material;
 	else
-		renderer.material.color = Color.white;
+		GetComponent.<Renderer>().material.color = Color.white;
 
 	// Retrieve a mesh instance
 	var mesh : Mesh = GetComponent(MeshFilter).mesh;

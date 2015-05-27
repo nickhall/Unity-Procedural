@@ -3,7 +3,7 @@ var showFPS = false;
 
 function Start ()
 {
-	guiText.material.color = Color.black;
+	GetComponent.<GUIText>().material.color = Color.black;
 }
 
 function LateUpdate () {
@@ -12,10 +12,10 @@ function LateUpdate () {
 	
 	if (Time.frameCount % 5) {
 		var vps : int = (mesh.vertexCount / Time.smoothDeltaTime) / 1000;
-		guiText.text = "Vertices per second:\n" + vps + "k";
+		GetComponent.<GUIText>().text = "Vertices per second:\n" + vps + "k";
 		
 		var fps : int = (1.0 / Time.smoothDeltaTime);
 		if (showFPS)
-			guiText.text += "\nFrames per second:\n" + fps;
+			GetComponent.<GUIText>().text += "\nFrames per second:\n" + fps;
 	}
 }

@@ -68,7 +68,7 @@ public class ProceduralRenderer : MonoBehaviour
 
         MeshFilter filter = GetComponent<MeshFilter>();
         filter.sharedMesh = mesh;
-        renderer.material = MeshMaterial;
+        GetComponent<Renderer>().material = MeshMaterial;
     }
 
     void GenerateBoxMesh()
@@ -92,7 +92,7 @@ public class ProceduralRenderer : MonoBehaviour
 
         MeshFilter filter = GetComponent<MeshFilter>();
         filter.sharedMesh = mesh;
-        renderer.material = MeshMaterial;
+        GetComponent<Renderer>().material = MeshMaterial;
     }
 
     void BuildQuad(Vector3 offset, Vector3 widthDir, Vector3 lengthDir)
